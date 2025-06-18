@@ -2,7 +2,6 @@ const Presensi = require('../models/Presensi');
 const Perizinan = require('../models/Perizinan');
 const { sendPresensiEmail } = require('../utils/mailer');
 const User = require('../models/User');
-const qr = require('qrcode');
 const moment = require('moment');
 
 const PresensiController = {
@@ -109,18 +108,6 @@ const PresensiController = {
       res.status(200).json({ data });
     } catch (err) {
       res.status(500).json({ message: 'Gagal mengambil data presensi', error: err.message });
-    }
-  },
-
-  async getQRCode(req, res) {
-    const today = moment().format('YYYY-MM-DD');
-    const url = `${process.env.FRONTEND_URL}/presensi/scan?date=${today}`;
-
-    try {
-      const qrCode = await qr.toDataURL(url);
-      res.status(200).json({ qr: qrCode, date: today });
-    } catch (err) {
-      res.status(500).json({ message: 'Gagal membuat QR Code', error: err.message });
     }
   },
 

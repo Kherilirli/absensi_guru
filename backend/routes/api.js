@@ -24,7 +24,6 @@ router.post('/absen-keluar', authenticate, PresensiController.absenKeluar);
 router.get('/presensi', authenticate, PresensiController.getAll);
 router.get('/presensi/my', authenticate, PresensiController.getMyPresensi);
 router.get('/presensi/role/:role', authenticate, authorize('admin', 'kepala_sekolah'), PresensiController.getByRole);
-router.get('/presensi/qrcode', authenticate, authorize('admin'), PresensiController.getQRCode);
 
 router.get('/notifikasi', authenticate, NotifikasiController.getByUserId);
 router.get('/notifikasi', authenticate, NotifikasiController.send);
