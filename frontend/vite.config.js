@@ -6,4 +6,12 @@ export default defineConfig({
   plugins: [react(),
     tailwindcss()
   ],
+  optimizeDeps: {
+    exclude: ['jspdf', 'jspdf-autotable', 'xlsx'],
+  },
+  build: {
+    rollupOptions: {
+      external: ['jspdf', 'jspdf-autotable', 'xlsx'],
+    }
+  }
 })
