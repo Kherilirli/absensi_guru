@@ -1,8 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
-import jsPDF from 'jspdf';
-import autoTable from 'jspdf-autotable';
-import * as XLSX from 'xlsx';
 
 // const statusOptions = ['Hadir', 'Tidak Hadir', 'Belum Presensi' , 'Izin', 'Sakit'];
 
@@ -160,10 +157,13 @@ const TeacherTable = () => {
   };
   
 
-  const exportPDF = () => {
+  const exportPDF = async () => {
+    const { default: jsPDF } = await import('jspdf');
+    const autoTable = (await import('jspdf-autotable')).default;
+  
     const doc = new jsPDF();
     autoTable(doc, {
-      head: [['Nama', 'NIP',   'Total Absensi', 'WhatsApp', 'Email']],
+      head: [['Nama', 'NIP', 'Total Absensi', 'WhatsApp', 'Email']],
       body: teacherData.map((d) => [
         d.nama,
         d.nip,
@@ -171,12 +171,14 @@ const TeacherTable = () => {
         d.no_wa,
         d.email,
       ]),
-
     });
     doc.save(`data_absensi_staff_${formattedDate}.pdf`);
   };
+  
 
-  const exportExcel = () => {
+  const exportExcel = async () => {
+    const XLSX = await import('xlsx');
+  
     const excelData = teacherData.map(d => ({
       ...d,
       jam_keluar: d.jam_keluar || '-'
