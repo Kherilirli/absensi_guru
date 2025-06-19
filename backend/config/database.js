@@ -2,7 +2,12 @@ const mysql = require('mysql');
 const util = require('util');
 require('dotenv').config();
 
-console.log('ENV:', process.env.DB_USERNAME, process.env.DB_PASSWORD);
+console.log("ENV CHECK:", {
+    DB_HOST: process.env.DB_HOST,
+    DB_USERNAME: process.env.DB_USERNAME,
+    DB_PASSWORD: process.env.DB_PASSWORD,
+    DB_DATABASE: process.env.DB_DATABASE
+  });
 
 const {
     DB_HOST,
