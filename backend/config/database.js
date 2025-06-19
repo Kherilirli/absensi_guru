@@ -2,6 +2,8 @@ const mysql = require('mysql');
 const util = require('util');
 require('dotenv').config();
 
+console.log('ENV:', process.env.DB_USERNAME, process.env.DB_PASSWORD);
+
 const {
     DB_HOST,
     DB_USERNAME,
