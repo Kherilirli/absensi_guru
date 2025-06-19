@@ -1,5 +1,6 @@
-import React from "react";
-import { QRCode } from "react-qrcode-logo";
+import React, {Suspense} from "react";
+
+const QRCode = React.lazy(() => import("react-qrcode-logo"));
 
 const ShowQR = () => {
   const today = new Date().toISOString().slice(0, 10); // format "YYYY-MM-DD"
@@ -14,16 +15,18 @@ const ShowQR = () => {
       <h2 className="text-2xl font-extrabold text-black mb-4 border-4  bg-yellow-300 inline-block">
         QR Presensi Hari Ini
       </h2>
-      <div className="inline-block border-4 border-black p-2 bg-white">
-        <QRCode
-          value={qrContent}
-          size={200}
-          bgColor="#ffffff"
-          fgColor="#000000"
-          level="H"
-          eyeRadius={0}
-        />
-      </div>
+      <Suspense fallback={<div>Loading QR Code...</div>}>
+        <div className="inline-block border-4 border-black p-2 bg-white">
+          <QRCode
+            value={qrContent}
+            size={200}
+            bgColor="#ffffff"
+            fgColor="#000000"
+            level="H"
+            eyeRadius={0}
+          />
+        </div>
+      </Suspense>
       <p className="text-sm font-semibold text-black mt-4">
         Scan QR ini untuk melakukan presensi hari ini
       </p>

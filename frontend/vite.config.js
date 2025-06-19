@@ -7,11 +7,11 @@ export default defineConfig({
     tailwindcss()
   ],
   optimizeDeps: {
-    exclude: ['jspdf', 'jspdf-autotable', 'xlsx'],
+    exclude: ['jspdf', 'jspdf-autotable', 'xlsx', 'react-qrcode-logo'],
   },
   build: {
     rollupOptions: {
-      external: ['jspdf', 'jspdf-autotable', 'xlsx'],
+      external: ['jspdf', 'jspdf-autotable', 'xlsx', 'react-qrcode-logo'],
     }
   }
 })
