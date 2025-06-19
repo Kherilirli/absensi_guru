@@ -8,6 +8,10 @@ const LoginController = require('../controllers/LoginController');
 const PerizinanController = require('../controllers/PerizinanController');
 const UserController = require('../controllers/UserController');
 
+router.get('/', (req, res) => {
+  res.send('API Backend Presensi Aktif!');
+});
+
 //login router
 router.post('/login', LoginController.login);
 
