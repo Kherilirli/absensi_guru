@@ -30,7 +30,7 @@ router.get('/presensi/my', authenticate, PresensiController.getMyPresensi);
 router.get('/presensi/role/:role', authenticate, authorize('admin', 'kepala_sekolah'), PresensiController.getByRole);
 
 router.get('/notifikasi', authenticate, NotifikasiController.getByUserId);
-router.get('/notifikasi', authenticate, NotifikasiController.send);
+router.get('/notifikasi/kirim', authenticate, NotifikasiController.send);
 
 router.post('/perizinan',
     authenticate, authorize('guru', 'staf'),
